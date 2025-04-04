@@ -2,7 +2,7 @@
 pragma solidity ^0.8.0;
 
 contract Jokenpo {
-    enum Jogada { None, Pedra, Papel, Tesoura }
+    enum Jogada {Nenhum, Pedra, Papel, Tesoura }
 
     address public owner;
     address public jogador1;
@@ -27,7 +27,7 @@ contract Jokenpo {
 
     function fazerJogada(Jogada _jogada) external {
         require(msg.sender == jogador1 || msg.sender == jogador2, "Voce nao participa do jogo");
-        require(_jogada != Jogada.None, "Jogada invalida");
+        require(_jogada != Jogada.Nenhum, "Jogada invalida");
 
         if (msg.sender == jogador1) {
             jogada1 = _jogada;
@@ -37,7 +37,7 @@ contract Jokenpo {
     }
 
     function verVencedor() external view returns (string memory) {
-        require(jogada1 != Jogada.None && jogada2 != Jogada.None, "Ambos devem ter jogado antes de verificar o vencedor");
+        require(jogada1 != Jogada.Nenhum && jogada2 != Jogada.Nenhum, "Ambos devem ter jogado antes de verificar o vencedor");
 
         if (jogada1 == jogada2) {
             return "Empate";
